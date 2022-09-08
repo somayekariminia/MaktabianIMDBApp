@@ -26,7 +26,7 @@ public class TableCreatorRepository {
     public void createFilmTable() throws SQLException {
         Connection connection = ConnectionGate.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement("create table film_table(id int,name varchar(50)," +
-                "ganre varchar(50),directorName varchar(50),createyear int,countey varchar(50))");
+                "genre varchar(50),directorName varchar(50),createyear int,countey varchar(50))");
         preparedStatement.executeUpdate();
 
     }
