@@ -12,4 +12,5 @@ public class User {
     private List<Film> favoriteFilms=new ArrayList<>();
     private List<Film> watchFilm=new ArrayList<>();
     private Genre favoriteGenre;
+
 }
