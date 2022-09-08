@@ -10,6 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepository {
+    public static UserRepository userRepository=new UserRepository();
+   private UserRepository() {
+    }
+
+    public UserRepository getUserRepository() {
+        return userRepository;
+    }
 
     public boolean login(String userName, String password) throws SQLException {
         Connection connection = ConnectionGate.getConnection();

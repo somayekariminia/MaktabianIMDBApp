@@ -1,9 +1,11 @@
 package service;
 
+import java.sql.SQLException;
+
 public interface ServiceFilm {
-    void addToMyFavoriteFilm();
-    void addToMyWatchedFilm();
+    void addToMyFavoriteFilm() throws SQLException;
+    void addToMyWatchedFilm() throws SQLException;
     void addToMyFavoriteGenre();
-    void watchNewToFilm();
+    void watchNewToFilm() throws SQLException;
 
 }
