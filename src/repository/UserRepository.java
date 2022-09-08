@@ -66,4 +66,5 @@ public List<Film> myGenreFavorite(String gener) throws SQLException {
              }
              return list;
 }
+
 }

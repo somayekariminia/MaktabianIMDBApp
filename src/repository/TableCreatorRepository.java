@@ -26,7 +26,12 @@ public class TableCreatorRepository {
     public void createFilmTable() throws SQLException {
         Connection connection = ConnectionGate.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement("create table film_table(id int,name varchar(50)," +
-                "genre varchar(50),directorName varchar(50),createyear int,countey varchar(50))");
+                "genre varchar(50)," +
+                "directorName varchar(50)," +
+                "createyear int," +
+                "countey varchar(50)," +
+                "numberSeasons int," +
+                "numberEpisodes int )");
         preparedStatement.executeUpdate();
 
     }
@@ -37,6 +42,7 @@ public class TableCreatorRepository {
                 "user_id int ," +
                 "film_id int," +
                 "description varchar(300)," +
+                "rate int, "+
                 " FOREIGN KEY(user_id) REFERENCES user_table(id)," +
                 " FOREIGN KEY(film_id) REFERENCES film_table(id))");
     }
