@@ -67,9 +67,6 @@ public class TableCreatorRepository {
                 " FOREIGN KEY(user_id) REFERENCES user_table(id)," +
                 " FOREIGN KEY(film_id) REFERENCES film_table(id))");
         preparedStatement.executeUpdate();
-
     }
-
-
 }
 

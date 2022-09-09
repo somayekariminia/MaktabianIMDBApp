@@ -82,7 +82,7 @@ public class FilmRepository {
     public List<Film> getFavoriteGenresFilms() throws SQLException {
         Connection connection = ConnectionGate.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement("select * from user_table INNER JOIN genre_table" +
-                " on user_table.id=genre_Film.user_id  inner join film_table " +
+                " on user_table.id=genre_table.user_id  inner join film_table " +
                 "on film_table.id=gener.film_id");
         List<Film> list = new ArrayList<>();
         ResultSet resultSet = preparedStatement.executeQuery();

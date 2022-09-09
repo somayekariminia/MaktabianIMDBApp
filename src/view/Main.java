@@ -34,14 +34,21 @@ public class Main {
                     switch (choice) {
                         case 1:
                             films =filmService.getFavoriteFilmService();
+                            if(!films.isEmpty())
                             for (Film film : films) {
                                 System.out.println(film.toString());
                             }
+                            else
+                                System.out.println("your list is empty ");
                         case 2:
                             films=null;
                             films=filmService.getFavoriteGenresFilmsService();
-                            System.out.println(films.);
+                            if(!films.isEmpty())
+                                for (int i = 0; i < films.size(); i++) {
+                                    System.out.println(films.get(i).getGenre());
+                                }
                         case 3:
+
                         case 4:
                     }
                 }

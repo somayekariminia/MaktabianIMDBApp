@@ -1,6 +1,7 @@
 package repository;
 
 import model.Film;
+import model.Genre;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -34,10 +35,11 @@ public class UserRepository {
         }
         return flage;
     }
-
-
-
-
-
-
+//    public List<Genre> getFavoriteGenre() throws SQLException {
+//        Connection connection = ConnectionGate.getConnection();
+//        PreparedStatement preparedStatement = connection.prepareStatement("select genre from " +
+//                "user_table inner join genre_table on user_table.id=genre_table.id " +
+//                "inner join film_table on genre_table.id=film_table.id ");
+//
+//    }
 }
