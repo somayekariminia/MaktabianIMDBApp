@@ -12,5 +12,81 @@ public class User {
     private List<Film> favoriteFilms=new ArrayList<>();
     private List<Film> watchFilm=new ArrayList<>();
     private Genre favoriteGenre;
+private int id;
+    public User(String userName, int age, String password, String mobileNumber, String email, List<Film> favoriteFilms, List<Film> watchFilm, Genre favoriteGenre) {
+        this.userName = userName;
+        this.age = age;
+        this.password = password;
+        this.mobileNumber = mobileNumber;
+        this.email = email;
+        this.favoriteFilms = favoriteFilms;
+        this.watchFilm = watchFilm;
+        this.favoriteGenre = favoriteGenre;
+    }
+public  int getId(){
+        return id;
+}
+    public String getUserName() {
+        return userName;
+    }
 
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<Film> getFavoriteFilms() {
+        return favoriteFilms;
+    }
+
+    public void setFavoriteFilms(List<Film> favoriteFilms) {
+        this.favoriteFilms = favoriteFilms;
+    }
+
+    public List<Film> getWatchFilm() {
+        return watchFilm;
+    }
+
+    public void setWatchFilm(List<Film> watchFilm) {
+        this.watchFilm = watchFilm;
+    }
+
+    public Genre getFavoriteGenre() {
+        return favoriteGenre;
+    }
+
+    public void setFavoriteGenre(Genre favoriteGenre) {
+        this.favoriteGenre = favoriteGenre;
+    }
 }

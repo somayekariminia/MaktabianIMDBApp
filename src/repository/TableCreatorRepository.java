@@ -29,7 +29,7 @@ public class TableCreatorRepository {
                 "genre varchar(50)," +
                 "directorName varchar(50)," +
                 "createyear int," +
-                "countey varchar(50)," +
+                "country varchar(50)," +
                 "numberSeasons int," +
                 "numberEpisodes int )");
         preparedStatement.executeUpdate();

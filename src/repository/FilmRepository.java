@@ -1,5 +1,8 @@
 package repository;
 
+import model.Film;
+import model.User;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FilmRepository {
-    public void addFilmToFavoriteList() throws SQLException {
+    public void addFilmToFavoriteList(int id, User user, Film film) throws SQLException {
         Connection connection = ConnectionGate.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement("insert into favorite_table values(?,?,?)");
         preparedStatement.setInt(1, id);
@@ -17,7 +20,7 @@ public class FilmRepository {
         preparedStatement.executeQuery();
     }
 
-    public void addFilmToWatchedList() throws SQLException {
+    public void addFilmToWatchedList(int id,User user,Film film) throws SQLException {
         Connection connection = ConnectionGate.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement("insert into watched_table values(?,?,?)");
         preparedStatement.setInt(1, id);
@@ -26,7 +29,7 @@ public class FilmRepository {
         preparedStatement.executeQuery();
     }
 
-    public void addCommentToFilm(String comment, int rate) throws SQLException {
+    public void addCommentToFilm(String comment, int rate,User user,Film film,int id) throws SQLException {
         Connection connection = ConnectionGate.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement("insert into comment_table values(?,?,?,?,?)");
         preparedStatement.setInt(1, id);

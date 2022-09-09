@@ -7,17 +7,17 @@ public class Film {
     private String name;
     private Genre genre;
     private String directorName;
-   private Date createdYear;
+   private int createdYear;
    private String country;
    private  Comment comment;
    private int rate;
    private double duration;
    private AgeCategory ageCategory;
 
-    public Film(int id, String name, Genre genre, String directorName, Date createdYear, String country, Comment comment, int rate, double duration, AgeCategory ageCategory) {
+    public Film(int id, String name, String genre, String directorName, int createdYear, String country, Comment comment, int rate, double duration, AgeCategory ageCategory) {
         this.id = id;
         this.name = name;
-        this.genre = genre;
+        this.genre = Genre.valueOf(genre);
         this.directorName = directorName;
         this.createdYear = createdYear;
         this.country = country;
@@ -25,6 +25,14 @@ public class Film {
         this.rate = rate;
         this.duration = duration;
         this.ageCategory = ageCategory;
+    }
+
+    public Film(String name, String genre, String directorName, int createdYear, String country) {
+        this.name = name;
+        this.genre = Genre.valueOf(genre);
+        this.directorName = directorName;
+        this.createdYear = createdYear;
+        this.country = country;
     }
 
     public int getId() {
@@ -59,11 +67,11 @@ public class Film {
         this.directorName = directorName;
     }
 
-    public Date getCreatedYear() {
+    public int getCreatedYear() {
         return createdYear;
     }
 
-    public void setCreatedYear(Date createdYear) {
+    public void setCreatedYear(int createdYear) {
         this.createdYear = createdYear;
     }
 
