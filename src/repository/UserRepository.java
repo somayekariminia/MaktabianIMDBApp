@@ -68,13 +68,12 @@ public class UserRepository {
         return filmList;
     }
 
-    public List<Film> myGenreFavorite(String gener) throws SQLException {
+    public List<Film> getFavoriteGenresFilms() throws SQLException {
         Connection connection = ConnectionGate.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement("select * from user_table INNER JOIN favorite_Film" +
-                " on user_table.id=favorite_Film.user_id  inner join film_table " +
-                "on film_table.id=favorite_table.film_id where gener=?");
+        PreparedStatement preparedStatement = connection.prepareStatement("select * from user_table INNER JOIN genre_table" +
+                " on user_table.id=genre_Film.user_id  inner join film_table " +
+                "on film_table.id=gener.film_id");
         List<Film> list = new ArrayList<>();
-        preparedStatement.setString(1, gener);
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             Film film = new Film(resultSet.getString("name"), resultSet.getString("gener")

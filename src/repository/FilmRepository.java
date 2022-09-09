@@ -40,7 +40,7 @@ public class FilmRepository {
         preparedStatement.executeQuery();
     }
 
-    public List<Integer> listRate(int id) throws SQLException {
+    public List<Integer> getRateList(int id) throws SQLException {
         Connection connection = ConnectionGate.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement("select rate from commant_table where film_id=?");
         preparedStatement.setInt(1, id);
