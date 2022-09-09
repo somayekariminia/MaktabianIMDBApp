@@ -11,9 +11,9 @@ public class User {
     private String email;
     private List<Film> favoriteFilms=new ArrayList<>();
     private List<Film> watchFilm=new ArrayList<>();
-    private Genre favoriteGenre;
+    private List<Genre> favoriteGenre=new ArrayList<>();
 private int id;
-    public User(String userName, int age, String password, String mobileNumber, String email, List<Film> favoriteFilms, List<Film> watchFilm, Genre favoriteGenre) {
+    public User(String userName, int age, String password, String mobileNumber, String email, List<Film> favoriteFilms, List<Film> watchFilm,List< Genre> favoriteGenre) {
         this.userName = userName;
         this.age = age;
         this.password = password;
@@ -82,11 +82,11 @@ public  int getId(){
         this.watchFilm = watchFilm;
     }
 
-    public Genre getFavoriteGenre() {
+    public List<Genre> getFavoriteGenre() {
         return favoriteGenre;
     }
 
-    public void setFavoriteGenre(Genre favoriteGenre) {
+    public void setFavoriteGenre(List<Genre> favoriteGenre) {
         this.favoriteGenre = favoriteGenre;
     }
 }
