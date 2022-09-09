@@ -115,4 +115,16 @@ public class Film {
     public void setAgeCategory(AgeCategory ageCategory) {
         this.ageCategory = ageCategory;
     }
+
+    @Override
+    public String toString() {
+        return ""+
+                ", name='" + name +
+                ", genre=" + genre +
+                ", directorName='" + directorName +
+                ", createdYear=" + createdYear +
+                ", country='" + country +
+                ", duration=" + duration +
+                ", ageCategory=" + ageCategory ;
+    }
 }

@@ -63,6 +63,52 @@ public class FilmRepository {
         else
             return true;
     }
-
+    public List<Film> getWatchedFilm() throws SQLException {
+        Connection connection = ConnectionGate.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("(select * from user_table INNER JOIN favorite_Film " +
+                " on user_table.id=favorite_Film.user_id  inner join film_table " +
+                "on film_table.id=whatched_table.film_id)");
+        List<Film> filmList = new ArrayList<>();
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Film film = new Film(resultSet.getString("name"), resultSet.getString("gener")
+                    , resultSet.getString("directorName"),
+                    resultSet.getInt("createryear"),
+                    resultSet.getString("country"));
+            filmList.add(film);
+        }
+        return filmList;
+    }
+    public List<Film> getFavoriteGenresFilms() throws SQLException {
+        Connection connection = ConnectionGate.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("select * from user_table INNER JOIN genre_table" +
+                " on user_table.id=genre_Film.user_id  inner join film_table " +
+                "on film_table.id=gener.film_id");
+        List<Film> list = new ArrayList<>();
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Film film = new Film(resultSet.getString("name"), resultSet.getString("gener")
+                    , resultSet.getString("directorName"),
+                    resultSet.getInt("createryear"),
+                    resultSet.getString("country"));
+            list.add(film);
+        }
+        return list;
+    }
+    public List<Film> getFavoriteFilm() throws SQLException {
+        Connection connection = ConnectionGate.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("select * from user_table INNER JOIN favorite_Film " +
+                " on user_table.id=favorite_Film.user_id  inner join film_table on film_table.id=favorit_Film.film_id");
+        List<Film> filmList = new ArrayList<>();
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Film film = new Film(resultSet.getString("name"), resultSet.getString("gener")
+                    , resultSet.getString("directorName"),
+                    resultSet.getInt("createryear"),
+                    resultSet.getString("country"));
+            filmList.add(film);
+        }
+        return filmList;
+    }
 }
 
