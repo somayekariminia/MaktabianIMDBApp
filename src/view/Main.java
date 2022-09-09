@@ -14,9 +14,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws SQLException {
         UserService userService = new UserService();
-        FilmServiceImpl filmService=new FilmServiceImpl();
+        FilmServiceImpl filmService = new FilmServiceImpl();
         Scanner scanner = new Scanner(System.in);
-        List<Film> films=new ArrayList<>();
+        List<Film> films = new ArrayList<>();
         System.out.println("1: signin \n 2: signout ");
         int choice = Integer.parseInt(scanner.nextLine());
         switch (choice) {
@@ -33,28 +33,74 @@ public class Main {
                     choice = Integer.parseInt(scanner.nextLine());
                     switch (choice) {
                         case 1:
-                            films =filmService.getFavoriteFilmService();
-                            if(!films.isEmpty())
-                            for (Film film : films) {
-                                System.out.println(film.toString());
-                            }
+                            films = filmService.getFavoriteFilmService();
+                            if (!films.isEmpty())
+                                for (Film film : films) {
+                                    System.out.println(film.toString());
+                                }
                             else
                                 System.out.println("your list is empty ");
                         case 2:
-                            films=null;
-                            films=filmService.getFavoriteGenresFilmsService();
-                            if(!films.isEmpty())
+                            films = null;
+                            films = filmService.getFavoriteGenresFilmsService();
+                            if (!films.isEmpty()) {
                                 for (int i = 0; i < films.size(); i++) {
-                                    System.out.println(films.get(i).getGenre());
+                                    for (int j = 1; j < films.size(); j++) {
+                                        if (films.get(i).getGenre().equals(films.get(j).getGenre()))
+                                            films.remove(i);
+                                    }
                                 }
+                                for (Film film : films) {
+                                    System.out.println(film.getGenre());
+                                }
+                            } else
+                                System.out.println("your list empty");
+                            break;
                         case 3:
-
+                            films = null;
+                            films = filmService.getWatchedFilmService();
+                            for (Film film : films) {
+                                System.out.println(films.toString());
+                            }
                         case 4:
+                            films = null;
+                            films = filmService.getFavoriteGenresFilmsService();
+                            for (Film film : films) {
+                                System.out.println(film.toString());
+                            }
+                            System.out.println("1- Choose a Film to Watch/n 2- add To Favorite ");
+                            choice = Integer.parseInt(scanner.nextLine());
+                            switch (choice) {
+                                case 1:
+                                    filmService.addToMyWatchedFilm();
+                                    System.out.println(" 1- race\n 2- command ");
+                                    choice = Integer.parseInt(scanner.nextLine());
+                                    switch (choice) {
+                                        case 1:
+                                            System.out.println("enter  rate range[1-10]");
+                                            int rante = Integer.parseInt(scanner.nextLine());
+                                            if (rante >= 1 && rante <= 10)
+                                                System.out.println("rate");
+                                                else
+                                            System.out.println("renge invalid");
+                                                break;
+                                        case 2:
+                                            System.out.println("enter your commend:");
+                                            String commend=scanner.nextLine();
+                                            break;
+                                    }
+                                    break;
+                                case 2:
+                                    filmService.addToMyFavoriteFilm();
+                                    break;
+                            }
                     }
                 }
                 break;
 
             case 2:
+
+
 
         }
     }
