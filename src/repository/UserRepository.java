@@ -20,7 +20,7 @@ public class UserRepository {
     public UserRepository getUserRepository() {
         return userRepository;
     }
-    public  void addUser(User user) throws SQLException {,
+    public  void addUser(User user) throws SQLException {
         Connection connection = ConnectionGate.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement("insert into user_table(username,age,password,mobileNumber,email) values(?,?,?,?,?)");
         preparedStatement.setString(1,user.getUserName());

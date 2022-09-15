@@ -65,15 +65,18 @@ public class FilmRepository {
 
     public List<Film> getWatchedFilm() throws SQLException {
         Connection connection = ConnectionGate.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement("(select * from user_table INNER JOIN favorite_Film " +
-                " on user_table.id=favorite_Film.user_id  inner join film_table " +
-                "on film_table.id=whatched_table.film_id)");
+        PreparedStatement preparedStatement = connection.prepareStatement("(select * from user_table INNER JOIN watched_table " +
+                " on user_table.id=watched_table.user_id  inner join film_table " +
+                "on film_table.id=watched_table.film_id)");
         List<Film> filmList = new ArrayList<>();
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            Film film = new Film(resultSet.getString("name"), resultSet.getString("gener")
+            Film film = new Film(resultSet.getString("name"),
+                    resultSet.getString("genre")
                     , resultSet.getString("directorName"),
-                    resultSet.getInt("createryear"),
+                    resultSet.getInt("duration"),
+                    resultSet.getString("ageCategory"),
+                    resultSet.getInt("createyear"),
                     resultSet.getString("country"));
             filmList.add(film);
         }
@@ -82,15 +85,18 @@ public class FilmRepository {
 
     public List<Film> getFavoriteGenresFilms() throws SQLException {
         Connection connection = ConnectionGate.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement("select * from user_table INNER JOIN genre_table" +
-                " on user_table.id=genre_table.user_id  inner join film_table " +
-                "on film_table.id=gener.film_id");
+        PreparedStatement preparedStatement = connection.prepareStatement("select * from user_table INNER JOIN gener_table" +
+                " on user_table.id=gener_table.user_id  inner join film_table " +
+                "on film_table.id=gener_table.film_id");
         List<Film> list = new ArrayList<>();
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            Film film = new Film(resultSet.getString("name"), resultSet.getString("gener")
+            Film film = new Film(resultSet.getString("name"),
+                    resultSet.getString("genre")
                     , resultSet.getString("directorName"),
-                    resultSet.getInt("createryear"),
+                    resultSet.getInt("duration"),
+                    resultSet.getString("ageCategory"),
+                    resultSet.getInt("createyear"),
                     resultSet.getString("country"));
             list.add(film);
         }
@@ -100,13 +106,16 @@ public class FilmRepository {
     public List<Film> getFavoriteFilm() throws SQLException {
         Connection connection = ConnectionGate.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement("select * from user_table INNER JOIN favorite_Film " +
-                " on user_table.id=favorite_Film.user_id  inner join film_table on film_table.id=favorit_Film.film_id");
+                " on user_table.id=favorite_Film.user_id  inner join film_table on film_table.id=favorite_Film.film_id");
         List<Film> filmList = new ArrayList<>();
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            Film film = new Film(resultSet.getString("name"), resultSet.getString("gener")
+            Film film = new Film(resultSet.getString("name"),
+                    resultSet.getString("genre")
                     , resultSet.getString("directorName"),
-                    resultSet.getInt("createryear"),
+                    resultSet.getInt("duration"),
+                    resultSet.getString("ageCategory"),
+                    resultSet.getInt("createyear"),
                     resultSet.getString("country"));
             filmList.add(film);
         }
@@ -115,9 +124,9 @@ public class FilmRepository {
 
     public List<Genre> getFavoriteGenres() throws SQLException {
         Connection connection = ConnectionGate.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement("select genre from user_table INNER JOIN genre_table" +
-                " on user_table.id=genre_table.user_id  inner join film_table " +
-                "on film_table.id=gener.film_id  group by genre");
+        PreparedStatement preparedStatement = connection.prepareStatement("select genre from user_table INNER JOIN gener_table" +
+                " on user_table.id=gener_table.user_id  inner join film_table " +
+                "on film_table.id=gener_table.film_id  group by genre");
         List<Genre> list = new ArrayList<>();
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {

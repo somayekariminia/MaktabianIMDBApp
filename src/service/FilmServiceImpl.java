@@ -1,6 +1,7 @@
 package service;
 
 import model.Film;
+import model.Genre;
 import repository.FilmRepository;
 import repository.UserRepository;
 
@@ -28,6 +29,10 @@ public class FilmServiceImpl implements FilmService {
     @Override
     public void addToMyFavoriteGenre() throws SQLException {
 
+    }
+    public  List<Genre> getMyFavoriteGenre() throws SQLException {
+        List<Genre> list1=new ArrayList<>();
+       return list1=filmRepository.getFavoriteGenres();
     }
 
     public List<Film> getFavoriteFilmService() throws SQLException {

@@ -1,6 +1,7 @@
 package view;
 
 import model.Film;
+import model.Genre;
 import repository.TableCreatorRepository;
 import service.FilmService;
 import service.FilmServiceImpl;
@@ -10,7 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) throws SQLException {
         UserService userService = new UserService();
@@ -41,19 +41,14 @@ public class Main {
                             else
                                 System.out.println("your list is empty ");
                         case 2:
-                            films = null;
-                            films = filmService.getFavoriteGenresFilmsService();
-                            if (!films.isEmpty()) {
-                                for (int i = 0; i < films.size(); i++) {
-                                    for (int j = 1; j < films.size(); j++) {
-                                        if (films.get(i).getGenre().equals(films.get(j).getGenre()))
-                                            films.remove(i);
-                                    }
+
+                            List<Genre>genreList=new ArrayList<>();
+                            genreList = filmService.getMyFavoriteGenre();
+                            if(!genreList.isEmpty())
+                                for (Genre genre:genreList) {
+                                    System.out.println(genre);
                                 }
-                                for (Film film : films) {
-                                    System.out.println(film.getGenre());
-                                }
-                            } else
+                            else
                                 System.out.println("your list empty");
                             break;
                         case 3:
@@ -99,7 +94,8 @@ public class Main {
                 break;
 
             case 2:
-
+                System.out.println("for exite press key  0:");
+                choice=scanner.nextInt();
 
 
         }

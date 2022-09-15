@@ -27,10 +27,12 @@ public class Film {
         this.ageCategory = ageCategory;
     }
 
-    public Film(String name, String genre, String directorName, int createdYear, String country) {
+    public Film(String name, String genre, String directorName, int duration,String ageCategory ,int createdYear, String country) {
         this.name = name;
         this.genre = Genre.valueOf(genre);
         this.directorName = directorName;
+        this.duration=duration;
+        this.ageCategory=AgeCategory.valueOf(ageCategory);
         this.createdYear = createdYear;
         this.country = country;
     }
