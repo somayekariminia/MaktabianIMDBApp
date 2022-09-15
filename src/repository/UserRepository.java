@@ -2,6 +2,7 @@ package repository;
 
 import model.Film;
 import model.Genre;
+import model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,7 +20,16 @@ public class UserRepository {
     public UserRepository getUserRepository() {
         return userRepository;
     }
-
+    public  void addUser(User user) throws SQLException {,
+        Connection connection = ConnectionGate.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("insert into user_table(username,age,password,mobileNumber,email) values(?,?,?,?,?)");
+        preparedStatement.setString(1,user.getUserName());
+        preparedStatement.setInt(2,user.getAge());
+        preparedStatement.setString(3,user.getPassword());
+        preparedStatement.setString(4,user.getMobileNumber());
+        preparedStatement.setString(5,user.getEmail());
+        preparedStatement.executeUpdate();
+    }
     public boolean login(String userName, String password) throws SQLException {
         Connection connection = ConnectionGate.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement("select * from user_table" +
