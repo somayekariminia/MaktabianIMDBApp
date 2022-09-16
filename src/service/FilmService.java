@@ -3,8 +3,8 @@ package service;
 import java.sql.SQLException;
 
 public interface FilmService {
-    void addToMyFavoriteFilm() throws SQLException;
-    void addToMyWatchedFilm() throws SQLException;
-    void addToMyFavoriteGenre() throws SQLException;
+    void addToMyFavoriteFilm(int userId,int filmId) throws SQLException;
+    void addToMyWatchedFilm(int userId,int filmId) throws SQLException;
+    void addToMyFavoriteGenre(int userId,int filmId ) throws SQLException;
 
 }

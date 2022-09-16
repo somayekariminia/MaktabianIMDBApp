@@ -16,19 +16,18 @@ public class FilmServiceImpl implements FilmService {
     List<Film> list = new ArrayList<>();
 
     @Override
-    public void addToMyFavoriteFilm() throws SQLException {
+    public void addToMyFavoriteFilm(int userId,int filmId) throws SQLException {
+        filmRepository.addFilmToFavoriteList(userId,filmId);
 
     }
 
     @Override
-    public void addToMyWatchedFilm() throws SQLException {
-
-
+    public void addToMyWatchedFilm(int userId,int filmId) throws SQLException {
+        filmRepository.addFilmToWatchedList(userId,filmId);
     }
-
     @Override
-    public void addToMyFavoriteGenre() throws SQLException {
-
+    public void addToMyFavoriteGenre(int userId,int filmId) throws SQLException {
+     filmRepository.addFilmToFavoriteList(userId, filmId);
     }
     public  List<Genre> getMyFavoriteGenre() throws SQLException {
         List<Genre> list1=new ArrayList<>();
@@ -51,5 +50,8 @@ public class FilmServiceImpl implements FilmService {
         list = null;
         list = filmRepository.getWatchedFilm();
         return list;
+    }
+    public int getIdFilm(String name) throws SQLException {
+        return filmRepository.getIdFilm(name);
     }
 }

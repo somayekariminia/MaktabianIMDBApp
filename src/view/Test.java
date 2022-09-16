@@ -15,8 +15,13 @@ public class Test {
         // tableCreatorRepository.createFilmTable();
         FilmRepository filmRepository=new FilmRepository();
         List<Film> filmList=new ArrayList<>();
-        List<Genre>list=new ArrayList<>();
-        list=filmRepository.getFavoriteGenres();
+        List<Integer>list=new ArrayList<>();
+        filmRepository.addCommentToFilm("verygood",8,1,2);
+        list=filmRepository.getRateList(1);
+        if(filmRepository.isWatched("father"))
+            System.out.println("mother");
+        else
+            System.out.println("no");
         System.out.println(list.get(0).toString());
     }
 }

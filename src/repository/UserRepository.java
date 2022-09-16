@@ -45,11 +45,17 @@ public class UserRepository {
         }
         return flage;
     }
-//    public List<Genre> getFavoriteGenre() throws SQLException {
-//        Connection connection = ConnectionGate.getConnection();
-//        PreparedStatement preparedStatement = connection.prepareStatement("select genre from " +
-//                "user_table inner join genre_table on user_table.id=genre_table.id " +
-//                "inner join film_table on genre_table.id=film_table.id ");
-//
-//    }
+    public int getIdUser(String userName,String password) throws SQLException {
+        Connection connection = ConnectionGate.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("select id from  user_table where username=? and password=?");
+        preparedStatement.setString(1,userName);
+        preparedStatement.setString(2,password);
+        ResultSet resultSet=preparedStatement.executeQuery();
+        int id=0;
+        while (resultSet.next())
+        {
+            id=resultSet.getInt(1);
+        }
+        return id;
+    }
 }

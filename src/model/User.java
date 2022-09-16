@@ -13,16 +13,14 @@ public class User {
     private List<Film> watchFilm=new ArrayList<>();
     private List<Genre> favoriteGenre=new ArrayList<>();
 private int id;
-    public User(String userName, int age, String password, String mobileNumber, String email, List<Film> favoriteFilms, List<Film> watchFilm,List< Genre> favoriteGenre) {
+    public User(String userName, int age, String password, String mobileNumber, String email) {
         this.userName = userName;
         this.age = age;
         this.password = password;
         this.mobileNumber = mobileNumber;
         this.email = email;
-        this.favoriteFilms = favoriteFilms;
-        this.watchFilm = watchFilm;
-        this.favoriteGenre = favoriteGenre;
     }
+
 public  int getId(){
         return id;
 }

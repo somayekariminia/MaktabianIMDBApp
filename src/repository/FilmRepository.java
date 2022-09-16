@@ -12,35 +12,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FilmRepository {
-    public void addFilmToFavoriteList(int id, User user, Film film) throws SQLException {
+    public void addFilmToFavoriteList(int idUser,int idFilm) throws SQLException {
         Connection connection = ConnectionGate.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement("insert into favorite_table(user_id,film_id) values(?,?)");
-        preparedStatement.setInt(1, user.getId());
-        preparedStatement.setInt(2, film.getId());
-        preparedStatement.executeQuery();
+        PreparedStatement preparedStatement = connection.prepareStatement("insert into favorite_film(user_id,film_id) values(?,?)");
+        preparedStatement.setInt(1, idUser);
+        preparedStatement.setInt(2, idFilm);
+        preparedStatement.executeUpdate();
     }
 
-    public void addFilmToWatchedList(int id, User user, Film film) throws SQLException {
+    public void addFilmToWatchedList( int userId, int filmId) throws SQLException {
         Connection connection = ConnectionGate.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement("insert into watched_table(user_id,film_id) values(?,?)");
-        preparedStatement.setInt(1, user.getId());
-        preparedStatement.setInt(2, film.getId());
-        preparedStatement.executeQuery();
+        preparedStatement.setInt(1, userId);
+        preparedStatement.setInt(2, filmId);
+        preparedStatement.executeUpdate();
     }
 
-    public void addCommentToFilm(String comment, int rate, User user, Film film, int id) throws SQLException {
+    public void addCommentToFilm(String comment, int rate,int id_user,int id_film) throws SQLException {
         Connection connection = ConnectionGate.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement("insert into comment_table (comment,rate,user_id,film_id) values(?,?,?,?)");
+        PreparedStatement preparedStatement = connection.prepareStatement("insert into comment_table (description,rate,user_id,film_id) values(?,?,?,?)");
         preparedStatement.setString(1, comment);
         preparedStatement.setInt(2, rate);
-        preparedStatement.setInt(3, user.getId());
-        preparedStatement.setInt(4, film.getId());
-        preparedStatement.executeQuery();
+        preparedStatement.setInt(3, id_user);
+        preparedStatement.setInt(4, id_film);
+        preparedStatement.executeUpdate();
     }
 
     public List<Integer> getRateList(int id) throws SQLException {
         Connection connection = ConnectionGate.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement("select rate from commant_table where film_id=?");
+        PreparedStatement preparedStatement = connection.prepareStatement("select rate from comment_table where film_id=?");
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
         List<Integer> list = new ArrayList<>();
@@ -54,13 +54,15 @@ public class FilmRepository {
     public boolean isWatched(String name) throws SQLException {
         Connection connection = ConnectionGate.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement("select * from film_table inner join " +
-                " watch_table on whatch_table.film_id=film_table.id where name=? ");
+                " watched_table on watched_table.film_id=film_table.id where name=? ");
         preparedStatement.setString(1, name);
         ResultSet resultSet = preparedStatement.executeQuery();
-        if (resultSet.equals(null))
-            return false;
-        else
-            return true;
+        boolean flage=false;
+        while (resultSet.next()){
+         if(!resultSet.getString("name").equals(null))
+             flage=true;
+        }
+        return flage;
     }
 
     public List<Film> getWatchedFilm() throws SQLException {
@@ -134,6 +136,17 @@ public class FilmRepository {
             list.add(genre);
         }
         return list;
+    }
+    public int getIdFilm(String name) throws SQLException {
+        Connection connection = ConnectionGate.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("select id from film_table where name=?");
+        preparedStatement.setString(1,name);
+        ResultSet resultSet= preparedStatement.executeQuery();
+        int idFilm=0;
+        while (resultSet.next()){
+            idFilm=resultSet.getInt(1);
+        }
+        return idFilm;
     }
 }
 
